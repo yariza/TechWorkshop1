@@ -11,6 +11,9 @@ public class FollowTarget : MonoBehaviour {
     [SerializeField]
     float lookDownAngle = 15;
 
+    [SerializeField, Range(0, 3)]
+    float lerpFactor = 5;
+
 	// Use this for initialization
     void Start() {
         
@@ -18,7 +21,11 @@ public class FollowTarget : MonoBehaviour {
 
 	// Update is called once per frame
     void Update() {
-        transform.position = target.position + offset;
+        // transform.position = target.position + offset;
+        // transform.rotation = Quaternion.Euler(lookDownAngle, 0, 0);
+
+        Vector3 cameraTarget = target.position + offset;
+        transform.position = Vector3.LerpUnclamped(transform.position, cameraTarget, lerpFactor);
         transform.rotation = Quaternion.Euler(lookDownAngle, 0, 0);
     }
 }
