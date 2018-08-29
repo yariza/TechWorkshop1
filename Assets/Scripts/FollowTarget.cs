@@ -25,7 +25,7 @@ public class FollowTarget : MonoBehaviour {
         // transform.rotation = Quaternion.Euler(lookDownAngle, 0, 0);
 
         Vector3 cameraTarget = target.position + offset;
-        transform.position = Vector3.LerpUnclamped(transform.position, cameraTarget, lerpFactor);
+        transform.position = Vector3.Lerp(transform.position, cameraTarget, lerpFactor * Time.deltaTime);
         transform.rotation = Quaternion.Euler(lookDownAngle, 0, 0);
     }
 }
